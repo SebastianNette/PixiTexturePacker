@@ -20,3 +20,5 @@ Either use the already uploaded version or simply download this repo and open th
 ### LICENSE ###
 
 This content is released under the (http://opensource.org/licenses/MIT) MIT License.
+
+Used Iconset: http://www.softicons.com/free-icons/toolbar-icons/blueberry-icon-set-by-icojam/
