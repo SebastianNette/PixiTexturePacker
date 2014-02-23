@@ -243,7 +243,7 @@
 			output += "\t\"scale\": " + this.input.scale.value + "\n";
 			output += "}}";
 
-			this.output.textarea.val(output);
+			this.output.textarea.val(output).select();
 			this.output.image.attr("src", imgdata);
 
 			this.publishing = false;
