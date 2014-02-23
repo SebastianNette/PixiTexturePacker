@@ -2,7 +2,7 @@
  * modified version of bin packing algorithm @ https://github.com/jakesgordon/bin-packing
  * Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
  *
- * pixi.js is licensed under the MIT License.
+ * @MIT License.
  * http://www.opensource.org/licenses/mit-license.php
 */
 
