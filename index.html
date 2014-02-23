@@ -1,0 +1,102 @@
+<!--
+/**
+ * @license
+ * Pixi Texture Packer
+ * Copyright (c) 2014, Sebastian Nette
+ * http://www.mokgames.com/
+ *
+ * Compiled: 2014-02-13
+ *
+ * Pixi Texture Packer is licensed under the MIT License.
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>PIXI.js Texture Packer</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui.min.css">
+</head>
+<body>
+	
+	<div id="overlay" style="display:none"></div>
+
+	<div id="loading">
+		Loading PIXI.js Texture Packer<br />
+		<br />
+		<img src="img/loading.gif" alt="" />
+	</div>
+
+	<div id="page" style="display:none">
+		<div class="head">
+			<div id="menubar">
+				<a href="http://www.mokgames.com/" target="_blank" style="float:right;">(c) Sebastian Nette - MOKGames.com</a>
+			</div>
+			<div id="toolbar"></div>
+		</div>
+		<div class="workspace">
+			<div id="settings"></div>
+			<div id="sprites"></div>
+			<div id="main">
+				<div id="spritesheet"><div class="canvas"></div></div>
+				<div id="zoomcontrol">
+					<table cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr>
+						<td align="left" nowrap="nowrap">
+							<span class="zoomlvl"><b>Zoom:</b> <span>1</span></span>
+							<span class="minus"><img src="img/minus.png" alt="-" /></span>
+							<span class="reset"><img src="img/reset.png" alt="&middot;" /></span>
+							<span class="plus"><img src="img/plus.png" alt="+" /></span>
+						</td>
+						<td width="60%"><div class="slider"></div></td>
+						<td align="right" nowrap="nowrap"><span class="size"><b>Size:</b> <span>256px x 256px</span></span></td>
+					</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- toolbar -->
+	<div id="toolbar_open" class="window" style="display:none">
+		not implemented yet.<br />
+		load via add sprites (json) for now!
+	</div>
+
+	<div id="toolbar_save" class="window" style="display:none">
+		not implemented yet.<br />
+		save via publish for now!
+	</div>
+
+	<div id="toolbar_add" class="window" style="display:none">
+		<table cellpadding="0" cellspacing="10" border="0" width="100%">
+		<tr>
+			<td><b>FILE</b></td>
+			<td><input type="file" class="file" multiple /></td>
+		</tr>
+		<tr>
+			<td><b>JSON</b></td>
+			<td><input type="text" class="json" value="http://" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right"><input type="button" class="add" value="Add Sprites" /></td>
+		</tr>
+		</table>
+	</div>
+
+	<!-- output window -->
+	<div id="output" style="display:none">
+		<div>
+			<input type="button" class="close" value="close" style="float:right" />
+			<input type="button" class="showjson" value="show json" />
+			<input type="button" class="showimage" value="show image" />
+		</div>
+		<textarea></textarea>
+		<img style="display:none" />
+	</div>
+
+	<script data-main="js/init" src="js/lib/require.js"></script>
+
+</body>
+</html>

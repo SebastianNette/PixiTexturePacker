@@ -1,0 +1,70 @@
+{
+	"menubar": [
+		{ "id": "file", "text": "File", "menu": [
+			{ "id": "new", "text": "New File" },
+			{ "id": "open", "text": "Open" },
+			{ "id": "save", "text": "Save" },
+			{ "id": "publish", "text": "Publish" }
+		] },
+		{ "id": "edit", "text": "Edit", "menu": [
+			{ "id": "add", "text": "Add Sprites" },
+			{ "id": "delete", "text": "Delete" }
+		] },
+		{ "id": "view", "text": "View", "menu": [
+			{ "id": "hide_settings", "text": "Settings" },
+			{ "id": "hide_sprites", "text": "Sprites" }
+		] }
+	],
+
+	"toolbar": [
+		{ "window": false, "id": "new", "img": "img/new.png", "text": "New File" },
+		{ "window": true, "id": "open", "img": "img/open.png", "text": "Open" },
+		{ "window": true, "id": "save", "img": "img/save.png", "text": "Save" },
+		{ "window": true, "id": "add", "img": "img/add.png", "text": "Add Sprites" },
+		{ "window": false, "id": "delete", "img": "img/delete.png", "text": "Delete" },
+		{ "window": false, "id": "publish", "img": "img/publish.png", "text": "Publish" }
+	],
+
+	"workspace": [
+		{ "parent": "settings", "id": "output", "text": "Output", "menu": [
+			{ "render": false, "id": "dataformat", "text": "Data Format", "type": "select", "value": "json", "values": [
+				[ "json", "JSON (Hash)" ]
+			] },
+			{ "render": false, "id": "datafile", "text": "Data File", "type": "text", "value": "spritesheet.json" },
+			{ "render": false, "id": "txtformat", "text": "Texture Format", "type": "select", "value": "png", "values": [
+				[ "png", "PNG (.png)" ], 
+				[ "jpg", "JPEG (.jpg)" ], 
+				[ "gif", "GIF (.gif)" ]
+			] },
+			{ "render": false, "id": "texturefile", "text": "Texture File", "type": "text", "value": "spritesheet.png" }
+		] },
+		{ "parent": "settings", "id": "geometry", "text": "Geometry", "menu": [
+			{ "render": true, "id": "maxwidth", "text": "Max Width", "type": "int", "min": 1, "value": 2048 },
+			{ "render": true, "id": "maxheight", "text": "Max Height", "type": "int", "min": 1, "value": 2048 },
+			{ "render": true, "id": "fixedwidth", "text": "Fixed Width", "type": "int", "min": 1, "value": "" },
+			{ "render": true, "id": "fixedheight", "text": "Fixed Height", "type": "int", "min": 1, "value": "" },
+			{ "render": true, "id": "sizeconstraints", "text": "Size constraints", "type": "select", "value": "pot", "values": [
+				[ "pot", "POT (Power Of Two)" ],
+				[ "any", "Any size" ]
+			] },
+			{ "render": true, "id": "squared", "text": "Force squared", "type": "checkbox", "checked": false },
+			{ "render": true, "id": "scale", "text": "Scale", "type": "float", "min": 0.1, "max": 10, "value": 1 }
+		] },
+		{ "parent": "settings", "id": "layout", "text": "Layout", "menu": [
+			{ "render": true, "id": "algorithm", "text": "Algorithm", "type": "select", "value": "binpacker", "values": [
+				[ "binpacker", "Bin Packer" ]
+			] },
+			{ "render": true, "id": "borderpadding", "text": "Border Padding", "type": "int", "min": 0, "value": 2 },
+			{ "render": true, "id": "shapepadding", "text": "Shape Padding", "type": "int", "min": 0, "value": 2 },
+			{ "render": true, "id": "innerpadding", "text": "Inner Padding", "type": "int", "min": 0, "value": 0 },
+			{ "render": true, "id": "trimmode", "text": "Trim Mode", "type": "select", "value": "trim", "values": [
+				[ "trim", "Trim" ],
+				[ "none", "None" ]
+			] },
+			{ "render": true, "id": "trimtreshold", "text": "Trim / Crop Treshold", "type": "int", "min": 1, "max": 255, "value": 1 }
+		] },
+		{ "parent": "sprites", "id": "sprites", "text": "Sprites" },
+		{ "parent": "sprites", "id": "log", "text": "Log" }
+	]
+
+}
