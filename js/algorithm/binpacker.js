@@ -1,5 +1,8 @@
 /**
- * modified version of bin packing algorithm @ https://github.com/jakesgordon/bin-packing
+ * modified version of bin packing algorithm 
+ * Copyright (c) 2014 Sebastian Nette
+ * 
+ * Original code @ https://github.com/jakesgordon/bin-packing
  * Copyright (c) 2011, 2012, 2013 Jake Gordon and contributors
  *
  * @MIT License.
