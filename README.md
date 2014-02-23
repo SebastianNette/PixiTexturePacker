@@ -10,6 +10,13 @@ This Texture Packer will always be free!
 
 ### Demo ###
 
-http://www.mokgames.com/texturepacker/
+http://www.mokgames.com/texturepacker/ (php script in the backend)
+http://www.mokgames.com/texturepacker/v2/index.html (only javascript [current version])
+
+### Usage ###
+
+Either use the already uploaded version or simply download this repo and open the index.html.
+
+### LICENSE ###
 
 This content is released under the (http://opensource.org/licenses/MIT) MIT License.
