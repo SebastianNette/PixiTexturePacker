@@ -228,10 +228,11 @@ input[type=text]:focus, select:focus {
 	border-radius:2px;
 	font-size:12px;
 	padding:5px;
+	overflow:auto;
 }
 #output input { cursor:pointer; padding: 2px; }
 #output div { padding-bottom:10px; }
-#output textarea { width:100%; height:355px; padding:10px; border-radius:2px; }
+#output textarea { width:100%; height:350px; padding:10px; border-radius:2px; }
 
 #overlay { 
 	position:absolute;
