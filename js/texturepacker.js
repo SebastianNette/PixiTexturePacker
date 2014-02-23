@@ -101,7 +101,7 @@
 			if(this.input.trimmode.value === "trim") {
 				_.each(this.frames, function(frame) {
 					if(frame.trimmedSize.treshold !== this.input.trimtreshold.value) {
-						frame.trimmedSize = this.trim(frame.can, frame.ctx, this.input.trimtreshold.value);
+						frame.trimmedSize = this.trim(frame.can, this.input.trimtreshold.value);
 					}
 				}.bind(this));
 			}
@@ -262,13 +262,11 @@
 					_.each(json.frames, function(frame, index) {
 						var texture = PIXI.Texture.fromFrame(index),
 							f = texture.frame,
-							can = getCanvas(frame.sourceSize.w, frame.sourceSize.h),
-							ctx = can.getContext("2d");
+							can = getCanvas(frame.sourceSize.w, frame.sourceSize.h);
 						if(texture.trim) {
-							var t = texture.trim;
-							ctx.drawImage(texture.baseTexture.source, f.x, f.y, f.width, f.height, t.x, t.y, f.width, f.height);
+							can.context.drawImage(texture.baseTexture.source, f.x, f.y, f.width, f.height, texture.trim.x, texture.trim.y, f.width, f.height);
 						} else {
-							ctx.drawImage(texture.baseTexture.source, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
+							can.context.drawImage(texture.baseTexture.source, f.x, f.y, f.width, f.height, 0, 0, f.width, f.height);
 						}
 						scope.createFrame(index, can, frame.sourceSize.w, frame.sourceSize.h);
 					});
@@ -283,18 +281,17 @@
 		 */
 		snapshotStage: function() {
 			var can = getCanvas(this.width, this.height),
-				ctx = can.getContext("2d"),
 				renderTexture = new PIXI.RenderTexture(this.width, this.height, this.canvasRenderer);
 				renderTexture.render(this.container),
 				header = "image/png";
 
 			// white background for jpegs
 			if(this.input.txtformat.value === "jpg") {
-				ctx.fillStyle = "rgb(255,255,255)";
-				ctx.fillRect(0, 0, this.width, this.height);
+				can.context.fillStyle = "rgb(255,255,255)";
+				can.context.fillRect(0, 0, this.width, this.height);
 				header = "image/jpeg";
 			}
-			ctx.drawImage(renderTexture.baseTexture.source, 0, 0, this.width, this.height);
+			can.context.drawImage(renderTexture.baseTexture.source, 0, 0, this.width, this.height);
 			var imgdata = can.toDataURL(header, 1);
 			renderTexture.destroy();
 			return imgdata;
@@ -340,21 +337,19 @@
 			}
 
 			var can = getCanvas(width, height),
-				ctx = can.getContext("2d"),
-				can2 = getCanvas(15, 15),
-				ctx2 = can2.getContext("2d");
-				ctx.drawImage(img, 0, 0),
+				can2 = getCanvas(15, 15);
+				can.context.drawImage(img, 0, 0),
 				texture = PIXI.Texture.fromCanvas(can);
 
 			// create thumbnail for spriteslist
 			if(width > height) {
-				can2.width = 15;
-				can2.height = Math.round(height * 15/width);
+				can2.context.width = 15;
+				can2.context.height = Math.round(height * 15/width);
 			} else {
-				can2.width = Math.round(width * 15/height);
-				can2.height = 15;
+				can2.context.width = Math.round(width * 15/height);
+				can2.context.height = 15;
 			}
-			ctx2.drawImage(img, 0, 0, width, height, 0, 0, can2.width, can2.height);
+			can2.context.drawImage(img, 0, 0, width, height, 0, 0, can2.width, can2.height);
 
 			// add to frameslist
 			this.frames[name] = {
@@ -366,12 +361,11 @@
 					$(this).addClass("selected");
 				}),
 				can: can,
-				ctx: ctx,
 				texture: texture,
 				sprite: new PIXI.Sprite(texture),
 				width: width,
 				height: height,
-				trimmedSize: this.trim(can, ctx, this.input.trimtreshold.value)
+				trimmedSize: this.trim(can, this.input.trimtreshold.value)
 			};
 
 			// add sprite to stage
@@ -389,9 +383,9 @@
 		/**
 		 * trims transparent pixels
 		 */
-		trim: function trim(can, ctx, treshold) {
+		trim: function trim(can, treshold) {
 			var alpha = Math.max(1, treshold);
-			var sourceData = ctx.getImageData(0, 0, can.width, can.height);
+			var sourceData = can.context.getImageData(0, 0, can.width, can.height);
 			var sourcePixels = sourceData.data;
 			var bound = [can.width, can.height, 0, 0];
 			for (var i = 0, len = sourcePixels.length; i < len; i += 4) {
