@@ -199,9 +199,11 @@ define([], function() {
 			}
 			if((this.root.w + w + 2 * this.options.padding.border) > this.options.maxsize.w) {
 				shouldGrowRight = false;
+				canGrowRight = false;
 			}
 			if((this.root.h + h + 2 * this.options.padding.border) > this.options.maxsize.h) {
 				shouldGrowDown = false;
+				canGrowDown = false;
 			}
 
 			if (shouldGrowRight) {
