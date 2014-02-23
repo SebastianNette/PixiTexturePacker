@@ -4,8 +4,6 @@
  * Copyright (c) 2014, Sebastian Nette
  * http://www.mokgames.com/
  *
- * Compiled: 2014-02-13
- *
  * Pixi Texture Packer is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license.php
  */
