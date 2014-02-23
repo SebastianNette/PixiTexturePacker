@@ -337,23 +337,23 @@
 			}
 
 			var can = getCanvas(width, height),
-				can2 = getCanvas(15, 15);
+				thumbnail = getCanvas(15, 15);
 				can.context.drawImage(img, 0, 0),
 				texture = PIXI.Texture.fromCanvas(can);
 
 			// create thumbnail for spriteslist
 			if(width > height) {
-				can2.context.width = 15;
-				can2.context.height = Math.round(height * 15/width);
+				thumbnail.width = 15;
+				thumbnail.height = Math.round(height * 15/width);
 			} else {
-				can2.context.width = Math.round(width * 15/height);
-				can2.context.height = 15;
+				thumbnail.width = Math.round(width * 15/height);
+				thumbnail.height = 15;
 			}
-			can2.context.drawImage(img, 0, 0, width, height, 0, 0, can2.width, can2.height);
+			thumbnail.context.drawImage(img, 0, 0, width, height, 0, 0, thumbnail.width, thumbnail.height);
 
 			// add to frameslist
 			this.frames[name] = {
-				dom: $("<div>").html("<span><img src='" + can2.toDataURL("image/png") + "' /></span>" + name).css("cursor", "pointer").click(function() {
+				dom: $("<div>").html("<span><img src='" + thumbnail.toDataURL("image/png") + "' /></span>" + name).css("cursor", "pointer").click(function() {
 					if(scope.selected && scope.selected !== name) {
 						scope.frames[scope.selected].dom.removeClass("selected");
 					}
