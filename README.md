@@ -10,8 +10,7 @@ This Texture Packer will always be free!
 
 ### Demo ###
 
-- http://www.mokgames.com/texturepacker/ (php script in the backend)
-- http://www.mokgames.com/texturepacker/v2/index.html (only javascript [current version])
+- http://www.mokgames.com/texturepacker/
 
 ### Usage ###
 
