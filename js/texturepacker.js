@@ -208,8 +208,11 @@
 
 			var separator = "", output = "{ \"frames\": {\n\n";
 			var prepend = this.input.prepend.value;
+			var dropext = this.input.dropext.value;
 			_.each(this.frames, function(frame, name) {
 				if(frame.sprite.visible) {
+					if(dropext)
+						name = name.slice(0, -4);
 					output += separator;
 					output += "\""+prepend+name+"\": {\n";
 					output += "\t\"frame\": {";
