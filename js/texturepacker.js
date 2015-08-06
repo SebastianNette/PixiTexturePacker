@@ -207,10 +207,11 @@
 			var imgdata = this.snapshotStage();
 
 			var separator = "", output = "{ \"frames\": {\n\n";
+			var prepend = this.input.prepend.value;
 			_.each(this.frames, function(frame, name) {
 				if(frame.sprite.visible) {
 					output += separator;
-					output += "\""+name+"\": {\n";
+					output += "\""+prepend+name+"\": {\n";
 					output += "\t\"frame\": {";
 					output += "\"x\":" + (frame.sprite.position.x + frame.trimmedSize.x) + ","; 
 					output += "\"y\":" + (frame.sprite.position.y + frame.trimmedSize.y) + ","; 
