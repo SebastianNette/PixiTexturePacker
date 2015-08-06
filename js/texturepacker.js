@@ -285,7 +285,7 @@
 		 */
 		snapshotStage: function() {
 			var can = getCanvas(this.width, this.height),
-				renderTexture = new PIXI.RenderTexture(this.width, this.height, this.canvasRenderer);
+				renderTexture = new PIXI.RenderTexture(this.renderer, this.width, this.height);
 				renderTexture.render(this.container),
 				header = "image/png";
 
@@ -705,21 +705,15 @@
 		 *
 		 */
 		createPIXI: function() {
-			this.stage = new PIXI.Stage(0xFFFFFF, true);
-			this.renderer = PIXI.autoDetectRenderer(this.width, this.height, null, true);
+			this.stage = new PIXI.Container();
+			this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {transparent: true}, true);
 
-			/* im not sure aout this but i think i need at least 1 canvas renderer to get the imagedata for the stage */
-			if(this.renderer instanceof PIXI.CanvasRenderer) {
-				this.canvasRenderer = this.renderer;
-			} else {
-				this.canvasRenderer = new PIXI.CanvasRenderer(this.width, this.height, null, true);
-			}
 			this.canvas.append(this.renderer.view).css({
 				width: this.width + 2, 
 				height: this.height + 2 
 			});
 
-			this.container = new PIXI.DisplayObjectContainer();
+			this.container = new PIXI.Container();
 			this.stage.addChild(this.container);
 			
 			this.tick();
