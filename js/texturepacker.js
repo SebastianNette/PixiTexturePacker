@@ -211,8 +211,11 @@
 			var dropext = this.input.dropext.value;
 			_.each(this.frames, function(frame, name) {
 				if(frame.sprite.visible) {
-					if(dropext)
-						name = name.slice(0, -4);
+					if(dropext) {
+						var ext = name.lastIndexOf('.');
+						if(ext > -1)
+							name = name.slice(0, ext);
+					}
 					output += separator;
 					output += "\""+prepend+name+"\": {\n";
 					output += "\t\"frame\": {";
