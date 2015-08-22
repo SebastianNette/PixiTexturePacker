@@ -363,6 +363,17 @@
 					}
 					scope.selected = name;
 					$(this).addClass("selected");
+				}).dblclick(function() {
+					$(this).html("<table><tr><td><span><img src='" + thumbnail.toDataURL("image/png") + "' /></span></td><td><input id='framename' type='text' value='" + name + "' /></td></tr></table>");
+					function rename() {
+						var newname = $(this).val();
+						if(name === newname)
+							return;
+						scope.selected = name;
+						scope.btn_delete(true);
+						scope.createFrame(newname, img, width, height);
+					}
+					$("#framename").focus().select().focusout(rename).keypress(function(e) { if(e.which == 13) rename.call(this); });
 				}),
 				can: can,
 				texture: texture,
