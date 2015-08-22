@@ -126,6 +126,10 @@ a { color:#0094FF }
 	width:258px;
 	height:258px;
 	margin:20px;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: pixelated;
 }
 
 .spritesbox .content div {
