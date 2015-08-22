@@ -426,7 +426,7 @@
 				width: can.width,
 				height: can.height
 			};
-			if (bound[2] !== 0 && bound[3] !== 0) {
+			if (bound[2] !== can.width-1 || bound[3] !== can.height-1) {
 				data = { 
 					trimmed: true, 
 					treshold: alpha, 
