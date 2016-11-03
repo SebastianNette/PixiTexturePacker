@@ -264,7 +264,8 @@
 		load: function(url) {
 			var scope = this;
 			$.getJSON(url, function(json) {
-				var loader = new PIXI.AssetLoader([url]);
+				var loader = new PIXI.loaders.Loader();
+				loader.add(url);
 				loader.onComplete = function() {
 					_.each(json.frames, function(frame, index) {
 						var texture = PIXI.Texture.fromFrame(index),
