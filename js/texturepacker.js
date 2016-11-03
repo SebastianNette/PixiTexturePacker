@@ -207,10 +207,17 @@
 			var imgdata = this.snapshotStage();
 
 			var separator = "", output = "{ \"frames\": {\n\n";
+			var prepend = this.input.prepend.value;
+			var dropext = this.input.dropext.value;
 			_.each(this.frames, function(frame, name) {
 				if(frame.sprite.visible) {
+					if(dropext) {
+						var ext = name.lastIndexOf('.');
+						if(ext > -1)
+							name = name.slice(0, ext);
+					}
 					output += separator;
-					output += "\""+name+"\": {\n";
+					output += "\""+prepend+name+"\": {\n";
 					output += "\t\"frame\": {";
 					output += "\"x\":" + (frame.sprite.position.x + frame.trimmedSize.x) + ","; 
 					output += "\"y\":" + (frame.sprite.position.y + frame.trimmedSize.y) + ","; 
@@ -257,7 +264,8 @@
 		load: function(url) {
 			var scope = this;
 			$.getJSON(url, function(json) {
-				var loader = new PIXI.AssetLoader([url]);
+				var loader = new PIXI.loaders.Loader();
+				loader.add(url);
 				loader.onComplete = function() {
 					_.each(json.frames, function(frame, index) {
 						var texture = PIXI.Texture.fromFrame(index),
@@ -281,7 +289,7 @@
 		 */
 		snapshotStage: function() {
 			var can = getCanvas(this.width, this.height),
-				renderTexture = new PIXI.RenderTexture(this.width, this.height, this.canvasRenderer);
+				renderTexture = new PIXI.RenderTexture(this.renderer, this.width, this.height);
 				renderTexture.render(this.container),
 				header = "image/png";
 
@@ -359,6 +367,17 @@
 					}
 					scope.selected = name;
 					$(this).addClass("selected");
+				}).dblclick(function() {
+					$(this).html("<table><tr><td><span><img src='" + thumbnail.toDataURL("image/png") + "' /></span></td><td><input id='framename' type='text' value='" + name + "' /></td></tr></table>");
+					function rename() {
+						var newname = $(this).val();
+						if(name === newname)
+							return;
+						scope.selected = name;
+						scope.btn_delete(true);
+						scope.createFrame(newname, img, width, height);
+					}
+					$("#framename").focus().select().focusout(rename).keypress(function(e) { if(e.which == 13) rename.call(this); });
 				}),
 				can: can,
 				texture: texture,
@@ -408,7 +427,7 @@
 				width: can.width,
 				height: can.height
 			};
-			if (bound[2] !== 0 && bound[3] !== 0) {
+			if (bound[2] !== can.width-1 || bound[3] !== can.height-1) {
 				data = { 
 					trimmed: true, 
 					treshold: alpha, 
@@ -701,21 +720,15 @@
 		 *
 		 */
 		createPIXI: function() {
-			this.stage = new PIXI.Stage(0xFFFFFF, true);
-			this.renderer = PIXI.autoDetectRenderer(this.width, this.height, null, true);
+			this.stage = new PIXI.Container();
+			this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {transparent: true}, true);
 
-			/* im not sure aout this but i think i need at least 1 canvas renderer to get the imagedata for the stage */
-			if(this.renderer instanceof PIXI.CanvasRenderer) {
-				this.canvasRenderer = this.renderer;
-			} else {
-				this.canvasRenderer = new PIXI.CanvasRenderer(this.width, this.height, null, true);
-			}
 			this.canvas.append(this.renderer.view).css({
 				width: this.width + 2, 
 				height: this.height + 2 
 			});
 
-			this.container = new PIXI.DisplayObjectContainer();
+			this.container = new PIXI.Container();
 			this.stage.addChild(this.container);
 			
 			this.tick();

@@ -64,8 +64,8 @@ define([], function() {
 				}
 			}
 
-			this.width += 2 * this.options.padding.border - this.options.padding.shape;
-			this.height += 2 * this.options.padding.border - this.options.padding.shape;
+			this.width += this.options.padding.border - this.options.padding.shape;
+			this.height += this.options.padding.border - this.options.padding.shape;
 
 			if(this.options.powerOfTwo) {
 				this.width = this.powerOfTwo(this.width) || 2;

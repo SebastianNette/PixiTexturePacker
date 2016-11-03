@@ -36,7 +36,9 @@
 				[ "jpg", "JPEG (.jpg)" ], 
 				[ "gif", "GIF (.gif)" ]
 			] },
-			{ "render": false, "id": "texturefile", "text": "Texture File", "type": "text", "value": "spritesheet.png" }
+			{ "render": false, "id": "texturefile", "text": "Texture File", "type": "text", "value": "spritesheet.png" },
+			{ "render": false, "id": "prepend", "text": "Frame Id Prepend", "type": "text", "value": "" },
+			{ "render": false, "id": "dropext", "text": "Drop Sprite File Ext", "type": "checkbox", "checked": false }
 		] },
 		{ "parent": "settings", "id": "geometry", "text": "Geometry", "menu": [
 			{ "render": true, "id": "maxwidth", "text": "Max Width", "type": "int", "min": 1, "value": 2048 },
